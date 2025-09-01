@@ -9,13 +9,17 @@ import Projects from "@/components/sections/Projects.astro";
 import Skills from "@/components/sections/Skills.astro";
 import KeyboardManager from "@/components/KeyboardManager.astro";
 
-import { basics } from "@cv";
+import { setLanguage } from "@/i18n/translations";
+import { getCV } from "@/i18n/cv";
+
+const locale = Astro.currentLocale;
+const { basics } = getCV(locale);
 const { name, label } = basics;
+const { getTranslation: t } = setLanguage(locale);
 ---
 
-<Layout title={`${name} - ${label}'s Portfolio'`}>
+<Layout title={t("index.title", { name, label })}>
   <main>
-    Hello
     <Hero />
     <About />
     <Experience />
