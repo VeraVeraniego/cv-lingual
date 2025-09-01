@@ -1,17 +1,24 @@
 ---
-import Section from "../Section.astro"
+import { getCV } from "@/i18n/cv";
+import Section from "../Section.astro";
 
-import { work } from "@cv"
+import { setLanguage } from "@/i18n/translations";
+
+const locale = Astro.currentLocale;
+const { work } = getCV(locale);
+const { getTranslation: t } = setLanguage(locale);
 ---
 
-<Section title="Experiencia laboral">
+<Section title={t("experience.title")}>
   <ul>
     {
       work.map(
         ({ name, startDate, endDate, position, summary, highlights, url }) => {
-          const startYear = new Date(startDate).getFullYear()
+          const startYear = new Date(startDate).getFullYear();
           const endYear =
-            endDate != null ? new Date(endDate).getFullYear() : "Actual"
+            endDate != null
+              ? new Date(endDate).getFullYear()
+              : t("experience.end");
 
           return (
             <li>
@@ -19,7 +26,11 @@ import { work } from "@cv"
                 <header>
                   <div>
                     <h3>
-                      <a href={url} title={`Ver ${name}`} target="_blank">
+                      <a
+                        href={url}
+                        title={t("experience.see", { name })}
+                        target="_blank"
+                      >
                         {name}
                       </a>
                     </h3>
@@ -27,16 +38,12 @@ import { work } from "@cv"
                   </div>
 
                   <div>
-                    <time 
-                      datetime={startDate}
-                      data-title={startDate}>
-                        {startYear}
+                    <time datetime={startDate} data-title={startDate}>
+                      {startYear}
                     </time>
                     {" - "}
-                    <time 
-                      datetime={endDate}
-                      data-title={endDate}>
-                        {endYear}
+                    <time datetime={endDate} data-title={endDate}>
+                      {endYear}
                     </time>
                   </div>
                 </header>
@@ -46,7 +53,7 @@ import { work } from "@cv"
                 </footer>
               </article>
             </li>
-          )
+          );
         }
       )
     }
@@ -102,10 +109,15 @@ import { work } from "@cv"
     content: attr(data-title);
     background-color: #333;
     color: #fff;
-    font-size: .75rem;
-    font-family: Menlo, Monaco, Lucida Console, "Courier New", monospace;;
+    font-size: 0.75rem;
+    font-family:
+      Menlo,
+      Monaco,
+      Lucida Console,
+      "Courier New",
+      monospace;
     position: absolute;
-    padding: .2rem .5rem;
+    padding: 0.2rem 0.5rem;
     bottom: -1.4rem;
     left: 50%;
     white-space: nowrap;

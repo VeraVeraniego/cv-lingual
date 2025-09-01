@@ -1,11 +1,15 @@
 ---
-import Section from "../Section.astro"
+import { getCV } from "@/i18n/cv";
+import Section from "../Section.astro";
+import { setLanguage } from "@/i18n/translations";
 
-import { basics } from "@cv"
-const { summary } = basics
+const locale = Astro.currentLocale;
+const { basics } = getCV(locale);
+const { getTranslation: t } = setLanguage(locale);
+const { summary } = basics;
 ---
 
-<Section title="Sobre mí">
+<Section title={t("about.title")}>
   <p>
     {summary}
   </p>

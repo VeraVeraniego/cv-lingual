@@ -1,27 +1,33 @@
 ---
-import { basics } from "@cv"
-import Section from "@/components/Section.astro"
-import Mail from "@/icons/Mail.astro"
-import Phone from "@/icons/Phone.astro"
-import X from "@/icons/X.astro"
-import LinkedIn from "@/icons/LinkedIn.astro"
-import GitHub from "@/icons/GitHub.astro"
-import WorldMap from "@/icons/WorldMap.astro"
-import type { SocialIcon } from "@/types"
+import Section from "@/components/Section.astro";
+import Mail from "@/icons/Mail.astro";
+import Phone from "@/icons/Phone.astro";
+import X from "@/icons/X.astro";
+import LinkedIn from "@/icons/LinkedIn.astro";
+import GitHub from "@/icons/GitHub.astro";
+import WorldMap from "@/icons/WorldMap.astro";
+import type { SocialIcon } from "@/types";
+import { getCV } from "@/i18n/cv";
 
-const { name, label, image, location, profiles, phone, email } = basics
-const { city, region } = location
+import { setLanguage } from "@/i18n/translations";
+
+const locale = Astro.currentLocale;
+const { basics } = getCV(locale);
+const { getTranslation: t } = setLanguage(locale);
+
+const { name, label, image, location, profiles, phone, email } = basics;
+const { city, region } = location;
 
 const SOCIAL_ICONS: SocialIcon = {
   GitHub,
   LinkedIn,
   X,
-}
+};
 
-const linkedInfo = profiles.find(({ network }) => network === "LinkedIn")
-const linkedUrl = linkedInfo?.url
+const linkedInfo = profiles.find(({ network }) => network === "LinkedIn");
+const linkedUrl = linkedInfo?.url;
 
-const printInfo = [email, phone, linkedUrl].filter(Boolean).join(" • ")
+const printInfo = [email, phone, linkedUrl].filter(Boolean).join(" • ");
 ---
 
 <Section>
@@ -41,7 +47,7 @@ const printInfo = [email, phone, linkedUrl].filter(Boolean).join(" • ")
           email && (
             <a
               href={`mailto:${email}`}
-              title={`Enviar un correo electrónico a ${name} al correo ${email}`}
+              title={t("hero.email", { name, email })}
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -53,7 +59,10 @@ const printInfo = [email, phone, linkedUrl].filter(Boolean).join(" • ")
           phone && (
             <a
               href={`tel:${phone}`}
-              title={`Llamar por teléfono a ${name} al número ${phone}`}
+              title={t("hero.phone", {
+                name,
+                phone,
+              })}
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -63,18 +72,21 @@ const printInfo = [email, phone, linkedUrl].filter(Boolean).join(" • ")
         }
         {
           profiles.map(({ network, url, username }) => {
-            const Icon = SOCIAL_ICONS[network]
+            const Icon = SOCIAL_ICONS[network];
 
             return (
               <a
                 href={url}
-                title={`Visitar el perfil de ${name} en ${network}`}
+                title={t("hero.profiles", {
+                  name,
+                  network,
+                })}
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 <Icon />
               </a>
-            )
+            );
           })
         }
       </footer>
