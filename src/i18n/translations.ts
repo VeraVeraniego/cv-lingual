@@ -25,7 +25,7 @@ const translations = {
     km: {
       helper: { 1: "Press", 2: "to open command palette." },
       section: { social: "Social", visit: "Visit {network}" },
-      search: "Search comando",
+      search: "Search command",
       client: { print: "Print", actions: "Actions" },
     },
   },
@@ -58,6 +58,11 @@ const translations = {
       section: { social: "Social", visit: "Visitar {network}" },
       search: "Buscar comando",
       client: { print: "Imprimir", actions: "Acciones" },
+      palette: {
+        select: "para seleccionar",
+        navigate: "para navegar",
+        close: "para cerrar",
+      },
     },
   },
 };
