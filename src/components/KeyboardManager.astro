@@ -11,11 +11,19 @@ const { basics } = getCV(locale);
 const { profiles } = basics;
 const { getTranslation: t } = setLanguage(locale);
 
-const translations = {
-  print: t("km.client.print"),
-  actions: t("km.client.actions"),
+const translationInfo = {
+  locale,
+  translations: {
+    print: t("km.client.print"),
+    actions: t("km.client.actions"),
+    palette: [
+      t("km.palette.select"),
+      t("km.palette.navigate"),
+      t("km.palette.close"),
+    ],
+  },
 };
-export type ClientTranslations = typeof translations;
+export type TranslationInfo = typeof translationInfo;
 
 const SOCIAL_ICONS: SocialIcon = {
   GitHub: `<svg
@@ -99,7 +107,7 @@ const profilesInfo = profiles.map(({ network, url }) => {
   id="hotkeypad"
   data-placeholder={t("km.search")}
   data-info={JSON.stringify(profilesInfo)}
-  data-translations={JSON.stringify(translations)}
+  data-translations={JSON.stringify(translationInfo)}
 >
 </div>
 
@@ -115,12 +123,27 @@ const profilesInfo = profiles.map(({ network, url }) => {
   }
 
   import HotKeyPad from "hotkeypad";
-  import type { ClientTranslations } from "./KeyboardManager.astro";
+  import type { TranslationInfo } from "./KeyboardManager.astro";
 
   const hotkeypad = new HotKeyPad();
   const info = hotkeypad.instance.getAttribute("data-info") ?? "[]";
   const translations = hotkeypad.instance.getAttribute("data-translations");
-  const t: ClientTranslations = JSON.parse(translations || "");
+  const { locale, translations: t }: TranslationInfo = JSON.parse(
+    translations || ""
+  );
+
+  if (locale !== "en") {
+    const footer = document.getElementById("hotkeypad");
+
+    footer?.querySelectorAll("footer>p").forEach((p, i) => {
+      const html = p.innerHTML;
+
+      const updated = html.replace(/(<\/kbd>)([^<]*)$/, (_, closing) => {
+        return closing + " " + t.palette[i];
+      });
+      p.innerHTML = updated;
+    });
+  }
 
   const parsedInfo = JSON.parse(info) as Info[];
 
