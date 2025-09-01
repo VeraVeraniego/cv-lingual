@@ -1,17 +1,18 @@
 ---
-import { basics } from "@cv"
+import { getCV } from "@/i18n/cv";
 
 interface Props {
-  title: string
+  title: string;
 }
 
-const { title } = Astro.props
-
-const { image, summary, url } = basics
+const { title } = Astro.props;
+const locale = Astro.currentLocale || "en";
+const { basics } = getCV(locale);
+const { image, summary, url } = basics;
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang={locale}>
   <head>
     <meta charset="UTF-8" />
     <title>{title}</title>
@@ -27,7 +28,7 @@ const { image, summary, url } = basics
     <meta property="og:image" content="" />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta property="twitter:domain" content={url.split("//")[1] ?? ''} />
+    <meta property="twitter:domain" content={url.split("//")[1] ?? ""} />
     <meta property="twitter:url" content={url} />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={summary} />
