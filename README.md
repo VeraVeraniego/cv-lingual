@@ -48,7 +48,7 @@ pnpm create astro@latest -- --template midudev/minimalist-portfolio-json
 Edita el archivo `cv.json` para crear tu propio Portafolio/CV imprimible.
 
 ### 2. Soporte multi- idioma:
-Edita el archivo `cv.json` para crear tu propio Portafolio/CV imprimible.
+Revisa las instrucciones en `i18n/instructions.ms` para agregar nuevos idiomas.
 ### 3. Lanza el servidor de desarrollo:
 
 ```bash
