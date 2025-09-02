@@ -1,40 +1,40 @@
 ---
-import { getLangs } from "@/i18n/config";
+import { getLangs, setLanguage } from "@/i18n/config";
 import { getRelativeLocaleUrl } from "astro:i18n";
 
 const langs = getLangs();
+const { getTranslation: t } = setLanguage(Astro.currentLocale);
 ---
 
-<div class="demo-wrapper">
-  <div class="lang-selector inline">
-    {
-      langs.map(({ locale, title }, index) => (
-        <>
-          <a
-            href={getRelativeLocaleUrl(locale)}
-            class:list={[
-              "lang-link",
-              { active: locale === Astro.currentLocale },
-            ]}
-          >
-            {title}
-          </a>
-          {index < langs.length - 1 && <span class="separator">/</span>}
-        </>
-      ))
-    }
-  </div>
+<div class="lang-selector no-print">
+  {
+    langs.map(({ locale, title }, index) => (
+      <>
+        <a
+          href={getRelativeLocaleUrl(locale)}
+          title={t("langpicker.title", { language: title })}
+          class:list={["lang-link", { active: locale === Astro.currentLocale }]}
+        >
+          {title}
+        </a>
+        {index < langs.length - 1 && <span class="separator">/</span>}
+      </>
+    ))
+  }
 </div>
 
 <style>
-  .inline {
+  .lang-selector {
+    justify-content: flex-end;
+    max-width: 700px;
+    margin-inline: auto;
     display: flex;
     align-items: center;
     gap: 4px;
     font-size: 14px;
   }
 
-  .inline .lang-link {
+  .lang-selector .lang-link {
     padding: 4px 6px;
     text-decoration: none;
     color: rgba(0, 0, 0, 0.6);
@@ -44,17 +44,17 @@ const langs = getLangs();
     border-radius: 3px;
   }
 
-  .inline .lang-link:hover {
+  .lang-selector .lang-link:hover {
     color: rgba(0, 0, 0, 0.8);
     background: rgba(0, 0, 0, 0.04);
   }
 
-  .inline .lang-link.active {
+  .lang-selector .lang-link.active {
     color: #3b82f6;
     background: rgba(59, 130, 246, 0.1);
   }
 
-  .inline .separator {
+  .lang-selector .separator {
     color: rgba(0, 0, 0, 0.3);
     font-weight: 300;
   }
