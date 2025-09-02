@@ -6,7 +6,7 @@ const langs = getLangs();
 const { getTranslation: t } = setLanguage(Astro.currentLocale);
 ---
 
-<div class="lang-selector no-print">
+<nav class="lang-selector no-print">
   {
     langs.map(({ locale, title }, index) => (
       <>
@@ -21,7 +21,7 @@ const { getTranslation: t } = setLanguage(Astro.currentLocale);
       </>
     ))
   }
-</div>
+</nav>
 
 <style>
   .lang-selector {
@@ -37,7 +37,7 @@ const { getTranslation: t } = setLanguage(Astro.currentLocale);
   .lang-selector .lang-link {
     padding: 4px 6px;
     text-decoration: none;
-    color: rgba(0, 0, 0, 0.6);
+    color: #6b7280;
     font-weight: 500;
     letter-spacing: 0.5px;
     transition: color 0.2s ease;
@@ -45,17 +45,17 @@ const { getTranslation: t } = setLanguage(Astro.currentLocale);
   }
 
   .lang-selector .lang-link:hover {
-    color: rgba(0, 0, 0, 0.8);
-    background: rgba(0, 0, 0, 0.04);
+    color: #111827;
+    background: #f3f4f6;
   }
 
   .lang-selector .lang-link.active {
-    color: #3b82f6;
-    background: rgba(59, 130, 246, 0.1);
+    color: #111827;
+    background: #e5e7eb;
   }
 
   .lang-selector .separator {
-    color: rgba(0, 0, 0, 0.3);
+    color: #9ca3af;
     font-weight: 300;
   }
 </style>
