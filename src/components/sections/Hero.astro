@@ -7,9 +7,7 @@ import LinkedIn from "@/icons/LinkedIn.astro";
 import GitHub from "@/icons/GitHub.astro";
 import WorldMap from "@/icons/WorldMap.astro";
 import type { SocialIcon } from "@/types";
-import { getCV } from "@/i18n/supportedLangs";
-
-import { setLanguage } from "@/i18n/translations";
+import { getCV, setLanguage } from "@/i18n/config";
 
 const locale = Astro.currentLocale;
 const { basics } = getCV(locale);
