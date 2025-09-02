@@ -1,8 +1,7 @@
-import type { Locales } from "@/types";
+import type { Locales } from "@/i18n/supportedLangs";
 
-const translations = {
+export const translations = {
   en: {
-    test: "Press {key} to open command.",
     index: { title: "{name}'s Portfolio - {label}" },
     hero: {
       email: "Send mail to {name}'s mail {email}",
@@ -27,10 +26,14 @@ const translations = {
       section: { social: "Social", visit: "Visit {network}" },
       search: "Search command",
       client: { print: "Print", actions: "Actions" },
+      palette: {
+        select: "to select",
+        navigate: "to navigate",
+        close: "to close",
+      },
     },
   },
   es: {
-    test: "Pulsa {key} para abrir la paleta de comandos.",
     index: { title: "Portafolio de {name} - {label}" },
     hero: {
       email: "Enviar un correo electrónico a {name} al correo {email}",

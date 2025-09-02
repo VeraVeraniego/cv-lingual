@@ -3,7 +3,7 @@ import "hotkeypad/reset.css";
 import "hotkeypad/index.css";
 import { type SocialIcon } from "@/types";
 
-import { getCV } from "@/i18n/cv";
+import { getCV } from "@/i18n/supportedLangs";
 import { setLanguage } from "@/i18n/translations";
 
 const locale = Astro.currentLocale;
@@ -132,18 +132,17 @@ const profilesInfo = profiles.map(({ network, url }) => {
     translations || ""
   );
 
-  if (locale !== "en") {
-    const footer = document.getElementById("hotkeypad");
+  const footer = document.getElementById("hotkeypad");
 
-    footer?.querySelectorAll("footer>p").forEach((p, i) => {
-      const html = p.innerHTML;
+  // Translate hotkeypad Texts
+  footer?.querySelectorAll("footer>p").forEach((p, i) => {
+    const html = p.innerHTML;
 
-      const updated = html.replace(/(<\/kbd>)([^<]*)$/, (_, closing) => {
-        return closing + " " + t.palette[i];
-      });
-      p.innerHTML = updated;
+    const updated = html.replace(/(<\/kbd>)([^<]*)$/, (_, closing) => {
+      return closing + " " + t.palette[i];
     });
-  }
+    p.innerHTML = updated;
+  });
 
   const parsedInfo = JSON.parse(info) as Info[];
 
