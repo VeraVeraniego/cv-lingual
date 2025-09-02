@@ -1,0 +1,61 @@
+---
+import { getLangs } from "@/i18n/supportedLangs";
+import { getRelativeLocaleUrl } from "astro:i18n";
+
+const langs = getLangs();
+---
+
+<div class="demo-wrapper">
+  <div class="lang-selector inline">
+    {
+      langs.map(({ locale, title }, index) => (
+        <>
+          <a
+            href={getRelativeLocaleUrl(locale)}
+            class:list={[
+              "lang-link",
+              { active: locale === Astro.currentLocale },
+            ]}
+          >
+            {title}
+          </a>
+          {index < langs.length - 1 && <span class="separator">/</span>}
+        </>
+      ))
+    }
+  </div>
+</div>
+
+<style>
+  .inline {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 14px;
+  }
+
+  .inline .lang-link {
+    padding: 4px 6px;
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.6);
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    transition: color 0.2s ease;
+    border-radius: 3px;
+  }
+
+  .inline .lang-link:hover {
+    color: rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.04);
+  }
+
+  .inline .lang-link.active {
+    color: #3b82f6;
+    background: rgba(59, 130, 246, 0.1);
+  }
+
+  .inline .separator {
+    color: rgba(0, 0, 0, 0.3);
+    font-weight: 300;
+  }
+</style>
