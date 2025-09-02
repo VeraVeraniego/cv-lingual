@@ -3,8 +3,7 @@ import "hotkeypad/reset.css";
 import "hotkeypad/index.css";
 import { type SocialIcon } from "@/types";
 
-import { getCV } from "@/i18n/supportedLangs";
-import { setLanguage } from "@/i18n/translations";
+import { getCV, setLanguage } from "@/i18n/config";
 
 const locale = Astro.currentLocale;
 const { basics } = getCV(locale);

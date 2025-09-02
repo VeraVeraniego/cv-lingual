@@ -1,7 +1,6 @@
 ---
-import { getCV } from "@/i18n/supportedLangs";
+import { getCV, setLanguage } from "@/i18n/config";
 import Section from "../Section.astro";
-import { setLanguage } from "@/i18n/translations";
 
 const locale = Astro.currentLocale;
 const { education } = getCV(locale);

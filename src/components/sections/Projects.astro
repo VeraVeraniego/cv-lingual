@@ -1,12 +1,10 @@
 ---
 import GitHub from "@/icons/GitHub.astro";
 import Section from "../Section.astro";
-import { getCV } from "@/i18n/supportedLangs";
-import { setLanguage } from "@/i18n/translations";
+import { getCV, setLanguage } from "@/i18n/config";
 
 const locale = Astro.currentLocale;
 const { projects } = getCV(locale);
-
 const { getTranslation: t } = setLanguage(locale);
 ---
 
