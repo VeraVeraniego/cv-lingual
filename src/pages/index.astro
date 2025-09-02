@@ -10,7 +10,8 @@ import Skills from "@/components/sections/Skills.astro";
 import KeyboardManager from "@/components/KeyboardManager.astro";
 
 import { setLanguage } from "@/i18n/translations";
-import { getCV } from "@/i18n/cv";
+import { getCV } from "@/i18n/supportedLangs";
+import LangPicker from "@/i18n/LangPicker.astro";
 
 const locale = Astro.currentLocale;
 const { basics } = getCV(locale);
@@ -19,6 +20,7 @@ const { getTranslation: t } = setLanguage(locale);
 ---
 
 <Layout title={t("index.title", { name, label })}>
+  <LangPicker />
   <main>
     <Hero />
     <About />
