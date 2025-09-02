@@ -12,41 +12,12 @@ Esquema del JSON de CV de <a href="https://jsonresume.org/schema/">jsonresume.or
 
 <p>
 Basado en el diseño de <a href="https://github.com/BartoszJarocki/cv">Bartosz Jarocki</a>
-
+    
 </p>
 
 </div>
 
-<div align="center">
-    <a href="#🚀-empezar">
-        Empezar
-    </a>
-    <span>&nbsp;✦&nbsp;</span>
-    <a href="#🧞-comandos">
-        Comandos
-    </a>
-    <span>&nbsp;✦&nbsp;</span>
-    <a href="#🔑-licencia">
-        Licencia
-    </a>
-    <span>&nbsp;✦&nbsp;</span>
-    <a href="https://midu.dev">
-        Personal
-    </a>
-   
-</div>
-
 <p></p>
-
-<div align="center">
-
-![Astro Badge](https://img.shields.io/badge/Astro-BC52EE?logo=astro&logoColor=fff&style=flat)
-![GitHub stars](https://img.shields.io/github/stars/midudev/minimalist-portfolio-json)
-![GitHub issues](https://img.shields.io/github/issues/midudev/minimalist-portfolio-json)
-![GitHub forks](https://img.shields.io/github/forks/midudev/minimalist-portfolio-json)
-![GitHub PRs](https://img.shields.io/github/issues-pr/midudev/minimalist-portfolio-json)
-
-</div>
 
 <img src="portada.png"></img>
 
@@ -59,7 +30,7 @@ Basado en el diseño de <a href="https://github.com/BartoszJarocki/cv">Bartosz J
 
 ## 🚀 Empezar
 
-### 1. Usa este [repo](https://github.com/midudev/minimalist-portfolio-json) como _template_ de un proyecto de Astro
+### 1. Usa este [repo](https://github.com/VeraVeraniego/cv-lingual) como _template_ de un proyecto de Astro
 
 
 - Yo uso [pnpm](https://pnpm.io/installation) como gestor de dependencias y empaquetador.
@@ -74,6 +45,9 @@ pnpm create astro@latest -- --template midudev/minimalist-portfolio-json
 ```
 
 ### 2. Añade tu contenido:
+Edita el archivo `cv.json` para crear tu propio Portafolio/CV imprimible.
+
+### 2. Soporte multi- idioma:
 Edita el archivo `cv.json` para crear tu propio Portafolio/CV imprimible.
 ### 3. Lanza el servidor de desarrollo:
 
@@ -99,6 +73,7 @@ pnpm dev
 ## 🔑 Licencia
 
 [MIT](LICENSE.txt) - Creado por [**midudev**](https://midu.dev).
+i18n por **VeraVeraniego**.
 
 
 
