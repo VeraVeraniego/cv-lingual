@@ -19,7 +19,7 @@ Basado en el diseño de <a href="https://github.com/BartoszJarocki/cv">Bartosz J
 
 <p></p>
 
-<img src="portada.png"></img>
+<img width="942" height="878" alt="Screenshot 2025-09-02 at 12 09 04 AM" src="https://github.com/user-attachments/assets/510bb9bc-3d37-42c7-a336-777feb635cb7" />
 
 ## 🛠️ Stack
 
