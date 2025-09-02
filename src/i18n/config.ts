@@ -8,6 +8,7 @@ export const i18nConfig = {
     cv: cvEn,
     translations: {
       index: { title: "{name}'s Portfolio - {label}" },
+      langpicker: { title: "Switch language to {language}" },
       hero: {
         email: "Send mail to {name}'s mail {email}",
         phone: "Call {name} by phone at {phone}",
@@ -44,6 +45,7 @@ export const i18nConfig = {
     cv: cvEs,
     translations: {
       index: { title: "Portafolio de {name} - {label}" },
+      langpicker: { title: "Cambiar idioma a {language}" },
       hero: {
         email: "Enviar un correo electrónico a {name} al correo {email}",
         phone: "Llamar por teléfono a {name} al número {phone}",
@@ -83,9 +85,7 @@ export const i18nConfig = {
 export type Locales = keyof typeof i18nConfig;
 
 const replaceTemplate = (text: string, params: Record<string, string>) => {
-  const wordsInBrackets = [...text.matchAll(/\\{([^{}]*)\\}/g)].map(
-    (m) => m[1]
-  );
+  const wordsInBrackets = [...text.matchAll(/\{([^{}]*)\}/g)].map((m) => m[1]);
   const hasWordsInBrackets = wordsInBrackets.length > 0;
   if (!hasWordsInBrackets) return text;
 
